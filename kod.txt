@@ -1,0 +1,80 @@
+String dir = Environment.CurrentDirectory;
+            dir +="\\1.txt";
+            FileInfo f = new FileInfo(dir);
+            FileStream fs = f.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            StreamReader sr = new StreamReader(fs, Encoding.UTF8);
+            String buf;
+            
+                buf = sr.ReadToEnd();
+                char[] chars = buf.ToCharArray();
+                int a=chars.Length;
+                string[]bufer;
+                bufer = new string[2500];
+                string[] bufer2;
+                bufer2 = new string[2500];
+                int ch=0;
+                int ch2=0;
+                bool prow = true;
+                int [] chetmac; 
+                chetmac = new int[2500];
+                int[] chetmac2;
+                chetmac2 = new int[2500];
+                for (int i = 0; i < a; i++)
+                {
+                    if ("." != chars[i].ToString() && "," != chars[i].ToString() && " " != chars[i].ToString())
+                    bufer[ch] += chars[i].ToString();
+
+                    if (" "==chars[i].ToString())
+                    {
+                         ch++;                    
+                    }
+                    
+                    
+                 
+                }
+                for (int i = 0; i < ch; i++ )
+                {
+                    prow = true;
+                    for (int i2=0;i2<ch2;i2++)
+                    {
+                        if (bufer[i] == bufer2[i2])
+                        {
+                            prow = false;
+                            break;
+                        }                     
+                    }
+                    if (prow == true)
+                    {
+                        bufer2[ch2] = bufer[i];
+                        for (int i5 = 0; i5 < ch;i5++)
+                        {
+                            if (bufer2[ch2] == bufer[i5])
+                                chetmac[ch2]++;
+                        }
+                            ch2++;
+                    }
+                }
+
+                int max=0;
+                int predsl=0;
+                for (int i5 = 0; i5 < 20; i5++)
+                {
+                    max = 0;
+                    for (int i4 = 0; i4 < ch2; i4++)
+                    {
+                        if (max <= chetmac[i4] && chetmac2[i4] != 5)
+                        {
+                            max = chetmac[i4];
+                            predsl = i4;
+                        }
+                                              
+                    }
+                    chetmac2[predsl] = 5;
+                    Console.Write(max);
+                    Console.Write(" ");
+                    Console.Write(bufer2[predsl]);
+                    Console.Write(" \n");
+                }
+               
+                    sr.Close();
+                    Console.Read();
