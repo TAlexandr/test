@@ -1,0 +1,14 @@
+static void Main()
+        {
+            int a, b, c, p;
+            
+            Console.Write("¬ведите 1 сторону треугольника: ");
+            a = Convert.ToInt32(Console.ReadLine());
+            Console.Write("¬ведите 2 сторону треугольника: ");
+            b = Convert.ToInt32(Console.ReadLine());
+            Console.Write("¬ведите 3 сторону треугольника: ");
+            c = Convert.ToInt32(Console.ReadLine());
+            p = (a + b + c) / 2;
+            double s = Math.Sqrt(p * (p - a) * (p - b) * (p - c));
+            Console.WriteLine("ѕлощадь треугольника =  " + s);
+        }
